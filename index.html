@@ -18,6 +18,8 @@
   <meta name="twitter:description" content="Trekking, rivers, jungle and slow travel across Vietnam, Laos and Cambodia.">
   <meta name="twitter:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Limestone_Cliffs-Halong_Bay_Vietnam-Andres_Larin.jpg">
   <link rel="canonical" href="https://asiabynature.com/">
+  <!-- TEMP: favicon generated from the recreated logo mark — swap for the exact uploaded logo file once available -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M65 8C45 6 20 22 15 45C11 66 18 84 36 92C42 82 46 66 53 53C61 39 73 27 65 8Z' fill='%231F4B3D'/%3E%3Cpath d='M60 22C49 37 38 54 29 76' stroke='%23F9F6F0' stroke-width='8' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
 
   <style>
     /* =========================================================
@@ -73,7 +75,7 @@
       color: var(--stone-dark);
     }
 
-    .nav-logo-icon { width: 26px; height: 26px; flex-shrink: 0; }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
 
     .nav-logo-by {
       color: var(--forest);
@@ -142,11 +144,9 @@
 
     /* ---- HERO ---- */
     .hero {
+      position: relative;
       min-height: 100vh;
-      background:
-        linear-gradient(to bottom, rgba(15,26,20,0.12) 0%, rgba(15,26,20,0.48) 100%),
-        url('https://commons.wikimedia.org/wiki/Special:FilePath/Limestone_Cliffs-Halong_Bay_Vietnam-Andres_Larin.jpg') center/cover no-repeat;
-      /* TEMP: Wikimedia Commons photo (Ha Long Bay) — replace with commissioned hero photography later */
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -155,7 +155,55 @@
       color: var(--white);
     }
 
-    .hero-content { max-width: 760px; margin: 0 auto; }
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* TEMP: Wikimedia Commons photos rotating through Vietnam, Laos and Cambodia — replace with commissioned hero photography later */
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.8s ease;
+    }
+
+    .hero-slide.active { opacity: 1; }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(15,26,20,0.18) 0%, rgba(15,26,20,0.52) 100%);
+      z-index: 1;
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+
+    .hero-dots {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .hero-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero-dot.active { background: var(--white); }
 
     .hero-eyebrow {
       font-size: 0.78rem;
@@ -638,7 +686,11 @@
 
     /* ---- FOOTER ---- */
     footer {
-      background: #1A2B20;
+      background:
+        linear-gradient(180deg, rgba(13,24,17,0.82) 0%, rgba(10,18,13,0.94) 100%),
+        url('https://commons.wikimedia.org/wiki/Special:FilePath/Rice_terraces_in_Sapa,_Vietnam.jpg') center/cover no-repeat;
+      /* TEMP: Wikimedia Commons photo (Sapa terraces) — replace with commissioned photography before launch */
+      background-color: #1A2B20;
       color: rgba(255,255,255,0.7);
       padding: 4rem 3rem 2rem;
     }
@@ -753,8 +805,8 @@
     <a href="/" class="nav-logo">
       <!-- TEMP: recreated icon — swap for the exact uploaded logo file once it's saved into the project folder -->
       <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M70 6C45 8 24 30 24 58c0 15 9 27 21 33 3-15 9-32 17-48C70 28 79 16 85 9 82 6 76 5 70 6z" fill="#1F4B3D"/>
-        <path d="M68 14C50 32 37 57 30 84" stroke="#F9F6F0" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <path d="M65 8C45 6 20 22 15 45C11 66 18 84 36 92C42 82 46 66 53 53C61 39 73 27 65 8Z" fill="#1F4B3D"/>
+        <path d="M60 22C49 37 38 54 29 76" stroke="#F9F6F0" stroke-width="8" stroke-linecap="round" fill="none"/>
       </svg>
       <span>Asia <span class="nav-logo-by">by</span> Nature</span>
     </a>
@@ -781,10 +833,26 @@
        ================================================== -->
   <header>
     <div class="hero">
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide active" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Limestone_Cliffs-Halong_Bay_Vietnam-Andres_Larin.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/%C4%90%C6%B0%E1%BB%9Dng_v%C3%A0o_Tam_C%E1%BB%91c_-_Ninh_B%C3%ACnh.JPG')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Kuang_Si_Falls,_Laos.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Nam_Song_River_Vang_Vieng_Laos.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Tree_roots_and_temple,_Ta_Prohm,_Angkor,_Cambodia.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Tonl%C3%A9_Sap_Floating_Village_(6202547090).jpg')"></div>
+      </div>
       <div class="hero-content">
         <p class="hero-eyebrow" data-i18n="hero-eyebrow">Vietnam · Laos · Cambodia</p>
         <h1 data-i18n="hero-title">Nature leads. You follow.</h1>
         <p class="hero-sub" data-i18n="hero-sub">Trekking through misty ridgelines, drifting down slow rivers, and standing quietly before ancient stone — journeys across Vietnam, Laos and Cambodia, paced entirely by the land.</p>
+        <div class="hero-dots" role="group" aria-label="Hero background slides">
+          <button type="button" class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+          <button type="button" class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+          <button type="button" class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+          <button type="button" class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
+          <button type="button" class="hero-dot" data-slide="4" aria-label="Slide 5"></button>
+          <button type="button" class="hero-dot" data-slide="5" aria-label="Slide 6"></button>
+        </div>
       </div>
     </div>
   </header>
@@ -1091,7 +1159,7 @@
       <div class="footer-col footer-contact">
         <h5 data-i18n="footer-contact-h">Get in Touch</h5>
         <!-- PLACEHOLDER: provisional address/phone — confirm before publishing -->
-        <p data-i18n="footer-address">12 Ly Thuong Kiet Street<br>Hoan Kiem, Hanoi<br>Vietnam</p>
+        <p data-i18n="footer-address">12 Ly Thuong Kiet Street<br>District 1, Ho Chi Minh City<br>Vietnam</p>
         <p><a href="mailto:hello@asiabynature.com">hello@asiabynature.com</a></p>
         <p><a href="tel:+84900000000">+84 90 000 0000</a></p>
       </div>
@@ -1228,7 +1296,7 @@
       'footer-company-4': { en: 'Site Map', vi: 'Sơ đồ trang' },
 
       'footer-contact-h': { en: 'Get in Touch', vi: 'Liên hệ với chúng tôi' },
-      'footer-address': { en: '12 Ly Thuong Kiet Street<br>Hoan Kiem, Hanoi<br>Vietnam', vi: '12 Phố Lý Thường Kiệt<br>Hoàn Kiếm, Hà Nội<br>Việt Nam' },
+      'footer-address': { en: '12 Ly Thuong Kiet Street<br>District 1, Ho Chi Minh City<br>Vietnam', vi: '12 Lý Thường Kiệt<br>Quận 1, Thành phố Hồ Chí Minh<br>Việt Nam' },
 
       'footer-copyright': { en: '© Asia By Nature 2026. All rights reserved.', vi: '© Asia By Nature 2026. Bảo lưu mọi quyền.' },
       'legal-privacy': { en: 'Privacy Policy', vi: 'Chính sách bảo mật' },
@@ -1299,6 +1367,38 @@
         enquiryForm.hidden = true;
         if (enquirySuccess) { enquirySuccess.hidden = false; }
       });
+    }
+
+    var heroSlides = document.querySelectorAll('.hero-slide');
+    var heroDots = document.querySelectorAll('.hero-dot');
+    if (heroSlides.length) {
+      var heroIndex = 0;
+      var heroTimer = null;
+
+      function showHeroSlide(i) {
+        heroIndex = (i + heroSlides.length) % heroSlides.length;
+        heroSlides.forEach(function (s, idx) { s.classList.toggle('active', idx === heroIndex); });
+        heroDots.forEach(function (d, idx) { d.classList.toggle('active', idx === heroIndex); });
+      }
+
+      function startHeroRotation() {
+        if (heroTimer) { clearInterval(heroTimer); }
+        heroTimer = setInterval(function () { showHeroSlide(heroIndex + 1); }, 5000);
+      }
+
+      heroDots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          showHeroSlide(parseInt(dot.getAttribute('data-slide'), 10));
+          startHeroRotation();
+        });
+      });
+
+      var prefersReducedMotion = false;
+      try { prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+      if (!prefersReducedMotion) {
+        startHeroRotation();
+      }
     }
   })();
   </script>
