@@ -618,7 +618,7 @@
 
     /* ---- ENQUIRY FORM ---- */
     .enquiry-form {
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto 1.5rem;
       text-align: left;
       background: rgba(20,32,25,0.55);
@@ -628,6 +628,21 @@
       backdrop-filter: blur(6px);
     }
 
+    .form-section-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin: 0 0 1.5rem;
+    }
+
+    .form-section + .form-section {
+      margin-top: 2.25rem;
+      padding-top: 2.25rem;
+      border-top: 1px solid rgba(255,255,255,0.16);
+    }
+
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -635,8 +650,10 @@
       margin-bottom: 1.25rem;
     }
 
+    .form-row-trip { grid-template-columns: 2fr 1fr; }
+
     @media (max-width: 600px) {
-      .form-row { grid-template-columns: 1fr; gap: 1.25rem; }
+      .form-row, .form-row-trip { grid-template-columns: 1fr; gap: 1.25rem; }
     }
 
     .form-field {
@@ -646,6 +663,14 @@
     }
 
     .form-field-full { margin-bottom: 1.5rem; }
+
+    .form-field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-field-group-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
 
     .form-field label {
       font-size: 0.78rem;
@@ -663,9 +688,138 @@
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 2px;
       color: var(--stone-dark);
+      width: 100%;
     }
 
+    .form-field select:required:invalid { color: rgba(32,36,32,0.5); }
+    .form-field select option[value=""] { color: rgba(32,36,32,0.5); }
+    .form-field select option:not([value=""]) { color: var(--stone-dark); }
+
     .form-field textarea { resize: vertical; }
+
+    .form-phone-row { display: flex; gap: 0.6rem; }
+    .form-phone-row select { flex: 0 0 108px; }
+    .form-phone-row input { flex: 1; }
+
+    /* ---- Destination multiselect ---- */
+    .multiselect { position: relative; }
+
+    .multiselect-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.65rem 0.85rem;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      color: rgba(32,36,32,0.5);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .multiselect-trigger.has-value { color: var(--stone-dark); }
+
+    .multiselect-chevron {
+      font-style: normal;
+      color: var(--stone-muted);
+      transition: transform 0.2s;
+      margin-left: 0.75rem;
+    }
+
+    .multiselect.open .multiselect-chevron { transform: rotate(180deg); }
+
+    .multiselect-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border: 1px solid rgba(32,36,32,0.15);
+      border-radius: 4px;
+      box-shadow: 0 8px 24px rgba(15,26,20,0.25);
+      padding: 0.5rem 0;
+      z-index: 10;
+    }
+
+    .multiselect-option {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.88rem;
+      color: var(--stone-dark);
+      cursor: pointer;
+    }
+
+    /* Higher specificity than ".form-field label" so option text stays dark
+       instead of inheriting the form's light label color and blending into
+       the white dropdown background. */
+    .multiselect-panel .multiselect-option,
+    .multiselect-panel .multiselect-option span {
+      color: var(--stone-dark);
+    }
+
+    .multiselect-option:hover { background: var(--mist); }
+
+    .multiselect-option input { width: auto; padding: 0; margin: 0; }
+
+    /* ---- Toggle switch ---- */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: 58px;
+      height: 30px;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 15px;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch.on { background: var(--clay); border-color: var(--clay); }
+
+    .toggle-switch-handle {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--white);
+      transition: left 0.2s;
+    }
+
+    .toggle-switch.on .toggle-switch-handle { left: 29px; }
+
+    .toggle-switch-label {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--white);
+    }
+
+    .toggle-switch.on .toggle-switch-label { padding-left: 0; }
+
+    .toggle-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
 
     .enquiry-form .btn-primary {
       display: block;
@@ -673,6 +827,7 @@
       border: none;
       cursor: pointer;
       font-family: inherit;
+      margin-top: 2rem;
     }
 
     .form-success {
@@ -1105,51 +1260,156 @@
 
     <!-- TEMP: form has no backend wired up yet — connect to your email/CRM provider (e.g. Formspree, HubSpot) before launch. Currently shows an on-page confirmation only. -->
     <form class="enquiry-form" id="enquiry-form">
-      <div class="form-row">
-        <div class="form-field">
-          <label for="ef-name" data-i18n="form-name-label">Full name</label>
-          <input type="text" id="ef-name" name="name" required data-i18n-placeholder="form-name-ph" placeholder="Jane Smith">
+
+      <div class="form-section">
+        <p class="form-section-title" data-i18n="form-section-trip">Your Trip</p>
+
+        <div class="form-field form-field-full">
+          <label data-i18n="form-dest-label">Where would you like to go?*</label>
+          <div class="multiselect" id="ef-destinations">
+            <button type="button" class="multiselect-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="multiselect-trigger-text" data-placeholder-key="form-dest-ph">Select as many options you want</span>
+              <i class="multiselect-chevron" aria-hidden="true">▾</i>
+            </button>
+            <div class="multiselect-panel" role="listbox" hidden>
+              <label class="multiselect-option"><input type="checkbox" name="destinations" value="vietnam"><span data-i18n="tab-vn">Vietnam</span></label>
+              <label class="multiselect-option"><input type="checkbox" name="destinations" value="laos"><span data-i18n="tab-laos">Laos</span></label>
+              <label class="multiselect-option"><input type="checkbox" name="destinations" value="cambodia"><span data-i18n="tab-cam">Cambodia</span></label>
+              <label class="multiselect-option"><input type="checkbox" name="destinations" value="unsure"><span data-i18n="form-dest-unsure">Not sure yet — open to suggestions</span></label>
+            </div>
+          </div>
         </div>
-        <div class="form-field">
-          <label for="ef-email" data-i18n="form-email-label">Email</label>
-          <input type="email" id="ef-email" name="email" required data-i18n-placeholder="form-email-ph" placeholder="jane@email.com">
+
+        <div class="form-row form-row-trip">
+          <div class="form-field-group">
+            <label data-i18n="form-when-label">When would you like to go?</label>
+            <div class="form-field-group-inputs">
+              <select id="ef-month" name="month" aria-label="Month">
+                <option value="" data-i18n="form-month-ph">Select a month</option>
+                <option value="1" data-i18n="month-1">January</option>
+                <option value="2" data-i18n="month-2">February</option>
+                <option value="3" data-i18n="month-3">March</option>
+                <option value="4" data-i18n="month-4">April</option>
+                <option value="5" data-i18n="month-5">May</option>
+                <option value="6" data-i18n="month-6">June</option>
+                <option value="7" data-i18n="month-7">July</option>
+                <option value="8" data-i18n="month-8">August</option>
+                <option value="9" data-i18n="month-9">September</option>
+                <option value="10" data-i18n="month-10">October</option>
+                <option value="11" data-i18n="month-11">November</option>
+                <option value="12" data-i18n="month-12">December</option>
+              </select>
+              <select id="ef-year" name="year" aria-label="Year">
+                <option value="" data-i18n="form-year-ph">Select a year</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="ef-duration" data-i18n="form-duration-label">How long for?*</label>
+            <input type="text" id="ef-duration" name="duration" required data-i18n-placeholder="form-duration-ph" placeholder="Duration of trip">
+          </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label for="ef-phone" data-i18n="form-phone-label">Phone / WhatsApp</label>
-          <input type="tel" id="ef-phone" name="phone" data-i18n-placeholder="form-phone-ph" placeholder="+1 555 000 0000">
-        </div>
-        <div class="form-field">
-          <label for="ef-group" data-i18n="form-group-label">Group size</label>
-          <select id="ef-group" name="group">
-            <option value="1-2" data-i18n="form-group-1">1–2 travellers</option>
-            <option value="3-5" data-i18n="form-group-2">3–5 travellers</option>
-            <option value="6-10" data-i18n="form-group-3">6–10 travellers</option>
-            <option value="10+" data-i18n="form-group-4">10+ travellers</option>
+
+        <div class="form-field form-field-full">
+          <label for="ef-travelers" data-i18n="form-travelers-label">How many people are travelling?*</label>
+          <select id="ef-travelers" name="travelers" required>
+            <option value="" data-i18n="form-travelers-ph">Select a number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10+">10+</option>
           </select>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label for="ef-dates" data-i18n="form-dates-label">Preferred dates</label>
-          <input type="text" id="ef-dates" name="dates" data-i18n-placeholder="form-dates-ph" placeholder="e.g. March 2027, 10 days">
-        </div>
-        <div class="form-field">
-          <label for="ef-landscape" data-i18n="form-landscape-label">What calls to you</label>
-          <select id="ef-landscape" name="landscape">
-            <option value="mountains" data-i18n="form-landscape-1">Mountains & trekking</option>
-            <option value="rivers" data-i18n="form-landscape-2">Rivers & deltas</option>
-            <option value="jungle" data-i18n="form-landscape-3">Jungle & wildlife</option>
-            <option value="ruins" data-i18n="form-landscape-4">Ancient stone & ruins</option>
-            <option value="unsure" data-i18n="form-landscape-5">Not sure yet</option>
+
+        <div class="form-field form-field-full">
+          <label for="ef-budget" data-i18n="form-budget-label">How much would you like to spend <strong>per person</strong>?*</label>
+          <select id="ef-budget" name="budget" required>
+            <option value="" data-i18n="form-budget-ph">Select a range</option>
+            <option value="under-1000" data-i18n="form-budget-1">Under $1,000</option>
+            <option value="1000-2500" data-i18n="form-budget-2">$1,000 – $2,500</option>
+            <option value="2500-5000" data-i18n="form-budget-3">$2,500 – $5,000</option>
+            <option value="5000-10000" data-i18n="form-budget-4">$5,000 – $10,000</option>
+            <option value="10000+" data-i18n="form-budget-5">$10,000+</option>
           </select>
         </div>
+
+        <div class="form-field form-field-full">
+          <label for="ef-comments" data-i18n="form-comments-label">Any other comments or requests?</label>
+          <textarea id="ef-comments" name="comments" rows="3" data-i18n-placeholder="form-comments-ph" placeholder="E.g. special occasion, any must dos or don'ts"></textarea>
+        </div>
       </div>
-      <div class="form-field form-field-full">
-        <label for="ef-message" data-i18n="form-message-label">Tell us more</label>
-        <textarea id="ef-message" name="message" rows="3" data-i18n-placeholder="form-message-ph" placeholder="What are you hoping to feel out there?"></textarea>
+
+      <div class="form-section">
+        <p class="form-section-title" data-i18n="form-section-details">Your Details</p>
+
+        <div class="form-field-group form-field-full">
+          <label data-i18n="form-yourname-label">Your Name*</label>
+          <div class="form-field-group-inputs">
+            <input type="text" id="ef-first-name" name="firstName" required data-i18n-placeholder="form-firstname-ph" placeholder="First Name*">
+            <input type="text" id="ef-last-name" name="lastName" required data-i18n-placeholder="form-lastname-ph" placeholder="Last Name*">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ef-email" data-i18n="form-email-label">Email Address*</label>
+            <input type="email" id="ef-email" name="email" required data-i18n-placeholder="form-email-ph" placeholder="example@email.com">
+          </div>
+          <div class="form-field">
+            <label for="ef-email-confirm" data-i18n="form-email-confirm-label">Confirm Email Address*</label>
+            <input type="email" id="ef-email-confirm" name="emailConfirm" required data-i18n-placeholder="form-email-ph" placeholder="example@email.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ef-phone" data-i18n="form-telephone-label">Telephone*</label>
+            <div class="form-phone-row">
+              <select id="ef-phone-code" name="phoneCode" aria-label="Country code">
+                <option value="+84">🇻🇳 +84</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+61">🇦🇺 +61</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+65">🇸🇬 +65</option>
+              </select>
+              <input type="tel" id="ef-phone" name="phone" required data-i18n-placeholder="form-phone-ph2" placeholder="Phone number">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="ef-hear" data-i18n="form-hear-label">How did you hear about us?</label>
+            <select id="ef-hear" name="hearAbout">
+              <option value="" data-i18n="form-select-ph">Select</option>
+              <option value="search" data-i18n="form-hear-1">Search engine</option>
+              <option value="social" data-i18n="form-hear-2">Social media</option>
+              <option value="referral" data-i18n="form-hear-3">Friend or referral</option>
+              <option value="agent" data-i18n="form-hear-4">Travel agent</option>
+              <option value="press" data-i18n="form-hear-5">Press or article</option>
+              <option value="other" data-i18n="form-hear-6">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <button type="button" class="toggle-switch" id="ef-newsletter-toggle" role="switch" aria-checked="false" aria-labelledby="ef-newsletter-text">
+            <span class="toggle-switch-handle"></span>
+            <span class="toggle-switch-label" id="ef-newsletter-toggle-label">NO</span>
+          </button>
+          <input type="hidden" id="ef-newsletter" name="newsletter" value="no">
+          <p class="toggle-text" id="ef-newsletter-text" data-i18n="form-newsletter-label">Sign up to our newsletter for weekly inspiration curated by our Travel Experts</p>
+        </div>
       </div>
+
       <button type="submit" class="btn-primary" data-i18n="enquiry-cta">Start planning your journey →</button>
     </form>
 
@@ -1344,27 +1604,68 @@
       'legal-terms': { en: 'Terms & Conditions', vi: 'Điều khoản & Điều kiện' },
       'legal-cookie': { en: 'Cookie Policy', vi: 'Chính sách Cookie' },
 
-      'form-name-label': { en: 'Full name', vi: 'Họ và tên' },
-      'form-name-ph': { en: 'Jane Smith', vi: 'Nguyễn Văn A' },
-      'form-email-label': { en: 'Email', vi: 'Email' },
-      'form-email-ph': { en: 'jane@email.com', vi: 'ban@email.com' },
-      'form-phone-label': { en: 'Phone / WhatsApp', vi: 'Điện thoại / WhatsApp' },
-      'form-phone-ph': { en: '+1 555 000 0000', vi: '+84 90 000 0000' },
-      'form-group-label': { en: 'Group size', vi: 'Số lượng khách' },
-      'form-group-1': { en: '1–2 travellers', vi: '1–2 khách' },
-      'form-group-2': { en: '3–5 travellers', vi: '3–5 khách' },
-      'form-group-3': { en: '6–10 travellers', vi: '6–10 khách' },
-      'form-group-4': { en: '10+ travellers', vi: 'Trên 10 khách' },
-      'form-dates-label': { en: 'Preferred dates', vi: 'Thời gian dự kiến' },
-      'form-dates-ph': { en: 'e.g. March 2027, 10 days', vi: 'VD: Tháng 3/2027, 10 ngày' },
-      'form-landscape-label': { en: 'What calls to you', vi: 'Điều gì đang gọi tên bạn' },
-      'form-landscape-1': { en: 'Mountains & trekking', vi: 'Núi non & trekking' },
-      'form-landscape-2': { en: 'Rivers & deltas', vi: 'Sông ngòi & đồng bằng' },
-      'form-landscape-3': { en: 'Jungle & wildlife', vi: 'Rừng rậm & động vật hoang dã' },
-      'form-landscape-4': { en: 'Ancient stone & ruins', vi: 'Phế tích & đền đài cổ' },
-      'form-landscape-5': { en: 'Not sure yet', vi: 'Chưa chắc chắn' },
-      'form-message-label': { en: 'Tell us more', vi: 'Chia sẻ thêm với chúng tôi' },
-      'form-message-ph': { en: 'What are you hoping to feel out there?', vi: 'Bạn mong muốn cảm nhận điều gì ngoài kia?' },
+      'form-section-trip': { en: 'Your Trip', vi: 'Chuyến Đi Của Bạn' },
+      'form-section-details': { en: 'Your Details', vi: 'Thông Tin Của Bạn' },
+
+      'form-dest-label': { en: 'Where would you like to go?*', vi: 'Bạn muốn đến đâu?*' },
+      'form-dest-ph': { en: 'Select as many options you want', vi: 'Chọn một hoặc nhiều lựa chọn' },
+      'form-dest-unsure': { en: 'Not sure yet — open to suggestions', vi: 'Chưa chắc chắn — mong được gợi ý' },
+
+      'form-when-label': { en: 'When would you like to go?', vi: 'Bạn muốn đi vào lúc nào?' },
+      'form-month-ph': { en: 'Select a month', vi: 'Chọn tháng' },
+      'month-1': { en: 'January', vi: 'Tháng 1' },
+      'month-2': { en: 'February', vi: 'Tháng 2' },
+      'month-3': { en: 'March', vi: 'Tháng 3' },
+      'month-4': { en: 'April', vi: 'Tháng 4' },
+      'month-5': { en: 'May', vi: 'Tháng 5' },
+      'month-6': { en: 'June', vi: 'Tháng 6' },
+      'month-7': { en: 'July', vi: 'Tháng 7' },
+      'month-8': { en: 'August', vi: 'Tháng 8' },
+      'month-9': { en: 'September', vi: 'Tháng 9' },
+      'month-10': { en: 'October', vi: 'Tháng 10' },
+      'month-11': { en: 'November', vi: 'Tháng 11' },
+      'month-12': { en: 'December', vi: 'Tháng 12' },
+      'form-year-ph': { en: 'Select a year', vi: 'Chọn năm' },
+
+      'form-duration-label': { en: 'How long for?*', vi: 'Bạn muốn đi bao lâu?*' },
+      'form-duration-ph': { en: 'Duration of trip', vi: 'Thời gian chuyến đi' },
+
+      'form-travelers-label': { en: 'How many people are travelling?*', vi: 'Có bao nhiêu người tham gia?*' },
+      'form-travelers-ph': { en: 'Select a number', vi: 'Chọn số lượng' },
+
+      'form-budget-label': { en: 'How much would you like to spend <strong>per person</strong>?*', vi: 'Bạn muốn chi <strong>cho mỗi người</strong> là bao nhiêu?*' },
+      'form-budget-ph': { en: 'Select a range', vi: 'Chọn mức chi phí' },
+      'form-budget-1': { en: 'Under $1,000', vi: 'Dưới $1,000' },
+      'form-budget-2': { en: '$1,000 – $2,500', vi: '$1,000 – $2,500' },
+      'form-budget-3': { en: '$2,500 – $5,000', vi: '$2,500 – $5,000' },
+      'form-budget-4': { en: '$5,000 – $10,000', vi: '$5,000 – $10,000' },
+      'form-budget-5': { en: '$10,000+', vi: 'Trên $10,000' },
+
+      'form-comments-label': { en: 'Any other comments or requests?', vi: 'Bạn có yêu cầu hay lưu ý nào khác không?' },
+      'form-comments-ph': { en: "E.g. special occasion, any must dos or don'ts", vi: 'VD: dịp đặc biệt, điều nên hoặc không nên' },
+
+      'form-yourname-label': { en: 'Your Name*', vi: 'Họ và Tên*' },
+      'form-firstname-ph': { en: 'First Name*', vi: 'Tên*' },
+      'form-lastname-ph': { en: 'Last Name*', vi: 'Họ*' },
+
+      'form-email-label': { en: 'Email Address*', vi: 'Địa chỉ Email*' },
+      'form-email-ph': { en: 'example@email.com', vi: 'ban@email.com' },
+      'form-email-confirm-label': { en: 'Confirm Email Address*', vi: 'Xác nhận Địa chỉ Email*' },
+
+      'form-telephone-label': { en: 'Telephone*', vi: 'Số Điện Thoại*' },
+      'form-phone-ph2': { en: 'Phone number', vi: 'Số điện thoại' },
+
+      'form-hear-label': { en: 'How did you hear about us?', vi: 'Bạn biết đến chúng tôi qua đâu?' },
+      'form-select-ph': { en: 'Select', vi: 'Chọn' },
+      'form-hear-1': { en: 'Search engine', vi: 'Công cụ tìm kiếm' },
+      'form-hear-2': { en: 'Social media', vi: 'Mạng xã hội' },
+      'form-hear-3': { en: 'Friend or referral', vi: 'Bạn bè giới thiệu' },
+      'form-hear-4': { en: 'Travel agent', vi: 'Đại lý du lịch' },
+      'form-hear-5': { en: 'Press or article', vi: 'Báo chí' },
+      'form-hear-6': { en: 'Other', vi: 'Khác' },
+
+      'form-newsletter-label': { en: 'Sign up to our newsletter for weekly inspiration curated by our Travel Experts', vi: 'Đăng ký nhận bản tin hàng tuần với những gợi ý được đội ngũ chuyên gia du lịch của chúng tôi tuyển chọn' },
+
       'form-success': { en: "Thank you — we've received your enquiry and will reply within one working day.", vi: 'Cảm ơn bạn — chúng tôi đã nhận được yêu cầu và sẽ phản hồi trong vòng một ngày làm việc.' }
     };
 
@@ -1389,7 +1690,27 @@
       buttons.forEach(function (b) {
         b.classList.toggle('active', b.getAttribute('data-lang') === lang);
       });
+      refreshMultiselects(lang);
       try { localStorage.setItem('abn-lang', lang); } catch (e) {}
+    }
+
+    function refreshMultiselects(lang) {
+      document.querySelectorAll('.multiselect').forEach(function (ms) {
+        var trigger = ms.querySelector('.multiselect-trigger');
+        var textEl = trigger.querySelector('.multiselect-trigger-text');
+        var checked = Array.prototype.slice.call(ms.querySelectorAll('input[type="checkbox"]:checked'));
+        if (checked.length) {
+          textEl.textContent = checked.map(function (cb) {
+            return cb.closest('.multiselect-option').querySelector('span').textContent;
+          }).join(', ');
+          trigger.classList.add('has-value');
+        } else {
+          var key = textEl.getAttribute('data-placeholder-key');
+          var entry = translations[key];
+          if (entry && entry[lang]) { textEl.textContent = entry[lang]; }
+          trigger.classList.remove('has-value');
+        }
+      });
     }
 
     buttons.forEach(function (b) {
@@ -1400,11 +1721,70 @@
     try { saved = localStorage.getItem('abn-lang') || 'en'; } catch (e) {}
     setLang(saved);
 
+    document.querySelectorAll('.multiselect').forEach(function (ms) {
+      var trigger = ms.querySelector('.multiselect-trigger');
+      var panel = ms.querySelector('.multiselect-panel');
+
+      trigger.addEventListener('click', function () {
+        var isOpen = ms.classList.toggle('open');
+        panel.hidden = !isOpen;
+        trigger.setAttribute('aria-expanded', isOpen);
+      });
+
+      ms.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+        cb.addEventListener('change', function () {
+          refreshMultiselects(document.documentElement.getAttribute('lang') || 'en');
+        });
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.multiselect.open').forEach(function (ms) {
+        if (!ms.contains(e.target)) {
+          ms.classList.remove('open');
+          ms.querySelector('.multiselect-panel').hidden = true;
+          ms.querySelector('.multiselect-trigger').setAttribute('aria-expanded', false);
+        }
+      });
+    });
+
+    var newsletterToggle = document.getElementById('ef-newsletter-toggle');
+    var newsletterInput = document.getElementById('ef-newsletter');
+    var newsletterLabel = document.getElementById('ef-newsletter-toggle-label');
+    if (newsletterToggle) {
+      newsletterToggle.addEventListener('click', function () {
+        var isOn = newsletterToggle.classList.toggle('on');
+        var lang = document.documentElement.getAttribute('lang') || 'en';
+        newsletterToggle.setAttribute('aria-checked', String(isOn));
+        if (newsletterInput) { newsletterInput.value = isOn ? 'yes' : 'no'; }
+        if (newsletterLabel) { newsletterLabel.textContent = isOn ? (lang === 'vi' ? 'CÓ' : 'YES') : (lang === 'vi' ? 'KHÔNG' : 'NO'); }
+      });
+    }
+
     var enquiryForm = document.getElementById('enquiry-form');
     var enquirySuccess = document.getElementById('enquiry-success');
     if (enquiryForm) {
       enquiryForm.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        var destChecked = enquiryForm.querySelectorAll('input[name="destinations"]:checked');
+        if (!destChecked.length) {
+          var destTrigger = document.querySelector('#ef-destinations .multiselect-trigger');
+          if (destTrigger) { destTrigger.focus(); }
+          return;
+        }
+
+        var email = document.getElementById('ef-email');
+        var emailConfirm = document.getElementById('ef-email-confirm');
+        if (email && emailConfirm) {
+          if (email.value.trim().toLowerCase() !== emailConfirm.value.trim().toLowerCase()) {
+            emailConfirm.setCustomValidity('Email addresses do not match.');
+            emailConfirm.reportValidity();
+            return;
+          }
+          emailConfirm.setCustomValidity('');
+        }
+
         enquiryForm.hidden = true;
         if (enquirySuccess) { enquirySuccess.hidden = false; }
       });
