@@ -187,9 +187,11 @@
       position: relative;
       z-index: 2;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 0.5rem;
-      margin-top: 2.5rem;
+      gap: 0.4rem;
+      max-width: 280px;
+      margin: 2.5rem auto 0;
     }
 
     .hero-dot {
@@ -834,12 +836,33 @@
   <header>
     <div class="hero">
       <div class="hero-slides" aria-hidden="true">
+        <!-- Vietnam (8) -->
         <div class="hero-slide active" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Limestone_Cliffs-Halong_Bay_Vietnam-Andres_Larin.jpg')"></div>
         <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/%C4%90%C6%B0%E1%BB%9Dng_v%C3%A0o_Tam_C%E1%BB%91c_-_Ninh_B%C3%ACnh.JPG')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Rice_terraces_in_Sapa,_Vietnam.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Ha_Giang_rizieres_bis.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Mu_Cang_Chai.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Son_Doong_Cave_DB_(3).jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Fansipan_road.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Cat_Ba_national_park.JPG')"></div>
+        <!-- Laos (8) -->
         <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Kuang_Si_Falls,_Laos.jpg')"></div>
         <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Nam_Song_River_Vang_Vieng_Laos.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Tad_Hang_waterfalls,_Tad_Lo_village,_Bolaven_Plateau,_Laos.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Careening_of_a_pirogue_on_a_sand_beach,_side_view_at_golden_hour,_Si_Phan_Don,_Laos.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Pirogue_running_from_the_Nam_Khan_river_to_the_Mekong_a_sunny_day_in_Luang_Prabang_Laos.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Pak_ou_caves.JPG')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Illuminated_buildings_on_Nam_Khan_river_bank_with_cloudy_sky_at_sunset_in_Luang_Prabang_Laos.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Red_metal_bridge_over_the_Nam_Song_River_front_view_in_Vang_Vieng_Laos.jpg')"></div>
+        <!-- Cambodia (8) -->
         <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Tree_roots_and_temple,_Ta_Prohm,_Angkor,_Cambodia.jpg')"></div>
         <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Tonl%C3%A9_Sap_Floating_Village_(6202547090).jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Cardamom_Mountains_Cambodia.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Mondulkiri_province_Northeastern_Cambodia.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Koh_Rong_Sanloem_beach_tree_house.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Thansur_Bokor_Highland_Resort.JPG')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Quincunxlingakbalspean01.JPG')"></div>
+        <div class="hero-slide" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Temple_of_Preah_Vihear-129336.jpg')"></div>
       </div>
       <div class="hero-content">
         <p class="hero-eyebrow" data-i18n="hero-eyebrow">Vietnam · Laos · Cambodia</p>
@@ -852,6 +875,24 @@
           <button type="button" class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
           <button type="button" class="hero-dot" data-slide="4" aria-label="Slide 5"></button>
           <button type="button" class="hero-dot" data-slide="5" aria-label="Slide 6"></button>
+          <button type="button" class="hero-dot" data-slide="6" aria-label="Slide 7"></button>
+          <button type="button" class="hero-dot" data-slide="7" aria-label="Slide 8"></button>
+          <button type="button" class="hero-dot" data-slide="8" aria-label="Slide 9"></button>
+          <button type="button" class="hero-dot" data-slide="9" aria-label="Slide 10"></button>
+          <button type="button" class="hero-dot" data-slide="10" aria-label="Slide 11"></button>
+          <button type="button" class="hero-dot" data-slide="11" aria-label="Slide 12"></button>
+          <button type="button" class="hero-dot" data-slide="12" aria-label="Slide 13"></button>
+          <button type="button" class="hero-dot" data-slide="13" aria-label="Slide 14"></button>
+          <button type="button" class="hero-dot" data-slide="14" aria-label="Slide 15"></button>
+          <button type="button" class="hero-dot" data-slide="15" aria-label="Slide 16"></button>
+          <button type="button" class="hero-dot" data-slide="16" aria-label="Slide 17"></button>
+          <button type="button" class="hero-dot" data-slide="17" aria-label="Slide 18"></button>
+          <button type="button" class="hero-dot" data-slide="18" aria-label="Slide 19"></button>
+          <button type="button" class="hero-dot" data-slide="19" aria-label="Slide 20"></button>
+          <button type="button" class="hero-dot" data-slide="20" aria-label="Slide 21"></button>
+          <button type="button" class="hero-dot" data-slide="21" aria-label="Slide 22"></button>
+          <button type="button" class="hero-dot" data-slide="22" aria-label="Slide 23"></button>
+          <button type="button" class="hero-dot" data-slide="23" aria-label="Slide 24"></button>
         </div>
       </div>
     </div>
