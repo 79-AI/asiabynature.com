@@ -371,18 +371,29 @@
       margin: 1rem auto 1.5rem;
     }
 
+    /* Fixed 3-column grid (matches Laos, which has 3 items) so every
+       country's cards render at the same size regardless of item count */
     .country-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .country-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .country-grid { grid-template-columns: 1fr; }
     }
 
     .nature-card {
       position: relative;
       overflow: hidden;
-      border-radius: 22px;
-      aspect-ratio: 3/4;
-      box-shadow: 0 4px 18px rgba(15,26,20,0.14);
+      border-radius: 14px;
+      aspect-ratio: 1/1;
+      box-shadow: 0 3px 12px rgba(15,26,20,0.12);
     }
 
     .nature-card img {
@@ -428,11 +439,15 @@
 
     .journeys > .section-title { max-width: 640px; }
 
-    /* Fixed 3-column grid so six cards sit evenly as 3-over-3 */
+    /* Fixed 3-column grid so six cards sit evenly as 3-over-3.
+       Capped to the same max-width as the country grids so the
+       card frames come out the same size. */
     .journey-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 1rem;
+      max-width: 980px;
+      margin: 0 auto;
     }
 
     @media (max-width: 900px) {
@@ -445,10 +460,10 @@
     .journey-card {
       position: relative;
       overflow: hidden;
-      border-radius: 22px;
-      aspect-ratio: 3/4;
+      border-radius: 14px;
+      aspect-ratio: 1/1;
       cursor: pointer;
-      box-shadow: 0 4px 18px rgba(15,26,20,0.14);
+      box-shadow: 0 3px 12px rgba(15,26,20,0.12);
     }
 
     .journey-card img {
@@ -471,6 +486,77 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       text-align: center;
+    }
+
+    /* ---- TRAVEL BY MONTH ---- */
+    .travel-by-month { background: var(--white); }
+
+    .travel-by-month > .section-eyebrow,
+    .travel-by-month > .section-title,
+    .travel-by-month > .section-lead {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .travel-by-month > .section-title { max-width: 640px; }
+
+    .month-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .month-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .month-grid { grid-template-columns: 1fr; }
+    }
+
+    .month-card {
+      background: var(--mist);
+      border-radius: 12px;
+      padding: 1.5rem 1.35rem;
+    }
+
+    .month-card .month-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.4rem;
+    }
+
+    .month-card .month-country {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--stone-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .month-card h4 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--forest);
+      margin-bottom: 0.65rem;
+      line-height: 1.3;
+    }
+
+    .month-card .month-why {
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: var(--stone-muted);
+    }
+
+    .month-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--stone-muted);
+      margin-top: 2rem;
     }
 
     /* ---- OUR APPROACH ---- */
@@ -970,6 +1056,7 @@
     <ul class="nav-links">
       <li><a href="/destinations/" data-i18n="nav-destinations">Destinations</a></li>
       <li><a href="/journeys/" data-i18n="nav-journeys">Adventures</a></li>
+      <li><a href="#travel-by-month" data-i18n="nav-travelmonth">Travel by Month</a></li>
       <li><a href="/our-approach/" data-i18n="nav-approach">Our Approach</a></li>
       <li><a href="/community/" data-i18n="nav-community">Community</a></li>
       <li><a href="/stories/" data-i18n="nav-stories">Stories</a></li>
@@ -1186,6 +1273,96 @@
         <div class="journey-card-label" data-i18n="journey-tailor">Tailor-made expeditions</div>
       </a>
     </div>
+  </section>
+
+
+  <!-- ==================================================
+       TRAVEL BY MONTH — when and where to trek, across VN/Laos/Cambodia
+       Seasonal notes checked against known dry/wet-season patterns and
+       rice-terrace / waterfall / cave-permit calendars for each country.
+       Verify exact dates each year, as monsoon timing shifts slightly.
+       ================================================== -->
+  <section class="travel-by-month" id="travel-by-month">
+    <p class="section-eyebrow" data-i18n="tbm-eyebrow">Travel by Month</p>
+    <h2 class="section-title" data-i18n="tbm-title">The best month to trek each landscape</h2>
+    <p class="section-lead" data-i18n="tbm-lead">Vietnam, Laos and Cambodia move through the seasons differently. Here's when — and where — the trekking is at its best, month by month.</p>
+
+    <div class="month-grid">
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-1-month">January</p>
+        <p class="month-country" data-i18n="tbm-1-country">Cambodia</p>
+        <h4 data-i18n="tbm-1-dest">Cardamom Mountains</h4>
+        <p class="month-why" data-i18n="tbm-1-why">Peak dry season: trails are firm, the canopy is still lush from the tail of the rains, and wildlife stays close to the last waterholes.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-2-month">February</p>
+        <p class="month-country" data-i18n="tbm-2-country">Vietnam</p>
+        <h4 data-i18n="tbm-2-dest">Fansipan & Hoàng Liên Sơn</h4>
+        <p class="month-why" data-i18n="tbm-2-why">Rhododendron forests begin to bloom along the summit trail, winter fog lifts, and the high ridgelines turn clear and cold rather than wet.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-3-month">March</p>
+        <p class="month-country" data-i18n="tbm-3-country">Laos</p>
+        <h4 data-i18n="tbm-3-dest">Bolaven Plateau</h4>
+        <p class="month-why" data-i18n="tbm-3-why">The last comfortable month here before the region's dry-season haze thickens further north — Tad Fane and Tad Lo waterfalls are still running full.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-4-month">April</p>
+        <p class="month-country" data-i18n="tbm-4-country">Vietnam</p>
+        <h4 data-i18n="tbm-4-dest">Phong Nha–Kẻ Bàng</h4>
+        <p class="month-why" data-i18n="tbm-4-why">The dry season's most reliable stretch, when the rivers inside Hang Én and Tú Làn run calm enough for multi-day cave treks. Skip the Laos and Cambodia lowlands this month — both turn hot and hazy.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-5-month">May</p>
+        <p class="month-country" data-i18n="tbm-5-country">Vietnam</p>
+        <h4 data-i18n="tbm-5-dest">Mù Cang Chải</h4>
+        <p class="month-why" data-i18n="tbm-5-why">Freshly flooded, newly transplanted paddies turn the valley into a mirror of the sky — a completely different face of the terraces from September's gold.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-6-month">June</p>
+        <p class="month-country" data-i18n="tbm-6-country">Laos</p>
+        <h4 data-i18n="tbm-6-dest">Nam Ha & Nong Khiaw</h4>
+        <p class="month-why" data-i18n="tbm-6-why">Early rains recharge the rivers and waterfalls while mornings often stay dry — trails are quiet before the heaviest months of the monsoon arrive.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-7-month">July</p>
+        <p class="month-country" data-i18n="tbm-7-country">Cambodia</p>
+        <h4 data-i18n="tbm-7-dest">Kirirom National Park</h4>
+        <p class="month-why" data-i18n="tbm-7-why">A pine-covered plateau that stays several degrees cooler than the lowlands through the rains, with two waterfalls an easy walk from the road.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-8-month">August</p>
+        <p class="month-country" data-i18n="tbm-8-country">Vietnam</p>
+        <h4 data-i18n="tbm-8-dest">Mù Cang Chải</h4>
+        <p class="month-why" data-i18n="tbm-8-why">The lowest terraces around La Pán Tẩn and Chế Cu Nha turn gold first, usually from the final week of August.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-9-month">September</p>
+        <p class="month-country" data-i18n="tbm-9-country">Vietnam</p>
+        <h4 data-i18n="tbm-9-dest">Sa Pa & Hoàng Su Phì</h4>
+        <p class="month-why" data-i18n="tbm-9-why">Peak golden rice terrace season, and the clearest, coolest trekking weather of the year arrives right behind it.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-10-month">October</p>
+        <p class="month-country" data-i18n="tbm-10-country">Vietnam</p>
+        <h4 data-i18n="tbm-10-dest">Hà Giang Loop</h4>
+        <p class="month-why" data-i18n="tbm-10-why">Tam Giác Mạch buckwheat flowers begin to bloom across the plateau as the region's best dry-season trekking window opens.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-11-month">November</p>
+        <p class="month-country" data-i18n="tbm-11-country">Laos</p>
+        <h4 data-i18n="tbm-11-dest">Luang Prabang & Kuang Si</h4>
+        <p class="month-why" data-i18n="tbm-11-why">Waterfalls are at their fullest right at the end of the rains — arguably the single best month to see Kuang Si running at full flow.</p>
+      </div>
+      <div class="month-card">
+        <p class="month-name" data-i18n="tbm-12-month">December</p>
+        <p class="month-country" data-i18n="tbm-12-country">Cambodia</p>
+        <h4 data-i18n="tbm-12-dest">Angkor & Mondulkiri</h4>
+        <p class="month-why" data-i18n="tbm-12-why">Peak cool, dry season — the most comfortable trekking temperatures of the year, with Bou Sraa waterfall still running well from the tail of the rains.</p>
+      </div>
+    </div>
+
+    <p class="month-note" data-i18n="tbm-note">Seasons shift a little each year — we check current conditions before confirming any trekking itinerary.</p>
   </section>
 
 
@@ -1442,6 +1619,7 @@
         <ul>
           <li><a href="/destinations/" data-i18n="footer-explore-1">Destinations</a></li>
           <li><a href="/journeys/" data-i18n="footer-explore-2">Adventures</a></li>
+          <li><a href="#travel-by-month" data-i18n="nav-travelmonth">Travel by Month</a></li>
           <li><a href="/our-approach/" data-i18n="footer-explore-3">Our Approach</a></li>
           <li><a href="/stories/" data-i18n="footer-explore-4">Stories</a></li>
         </ul>
@@ -1487,6 +1665,7 @@
       'nav-stories': { en: 'Stories', vi: 'Chia sẻ' },
       'nav-contact': { en: 'Contact', vi: 'Liên hệ' },
       'nav-cta': { en: 'Plan your journey →', vi: 'Lên kế hoạch hành trình →' },
+      'nav-travelmonth': { en: 'Travel by Month', vi: 'Du lịch theo tháng' },
 
       'hero-eyebrow': { en: 'Vietnam · Laos · Cambodia', vi: 'Việt Nam · Lào · Campuchia' },
       'hero-title': { en: 'Nature leads. You follow.', vi: 'Thiên nhiên dẫn lối. Bạn bước theo.' },
@@ -1541,6 +1720,71 @@
       'journey-conservation': { en: 'Community & conservation', vi: 'Cộng đồng & bảo tồn' },
       'journey-cycling': { en: 'Slow cycling through nature', vi: 'Đạp xe chậm rãi giữa thiên nhiên' },
       'journey-tailor': { en: 'Tailor-made expeditions', vi: 'Hành trình thiết kế riêng' },
+
+      'tbm-eyebrow': { en: 'Travel by Month', vi: 'Du lịch theo tháng' },
+      'tbm-title': { en: 'The best month to trek each landscape', vi: 'Tháng nào nên trekking ở đâu' },
+      'tbm-lead': { en: "Vietnam, Laos and Cambodia move through the seasons differently. Here's when — and where — the trekking is at its best, month by month.", vi: 'Việt Nam, Lào và Campuchia trải qua các mùa theo những cách khác nhau. Đây là thời điểm — và địa điểm — trekking đẹp nhất, theo từng tháng.' },
+      'tbm-note': { en: 'Seasons shift a little each year — we check current conditions before confirming any trekking itinerary.', vi: 'Thời tiết mỗi năm có thể lệch đi một chút — chúng tôi luôn kiểm tra điều kiện thực tế trước khi xác nhận bất kỳ hành trình trekking nào.' },
+
+      'tbm-1-month': { en: 'January', vi: 'Tháng 1' },
+      'tbm-1-country': { en: 'Cambodia', vi: 'Campuchia' },
+      'tbm-1-dest': { en: 'Cardamom Mountains', vi: 'Dãy núi Cardamom' },
+      'tbm-1-why': { en: 'Peak dry season: trails are firm, the canopy is still lush from the tail of the rains, and wildlife stays close to the last waterholes.', vi: 'Đỉnh điểm mùa khô: đường mòn khô ráo, tán rừng vẫn còn xanh tốt từ dư âm mùa mưa, và động vật hoang dã vẫn quần tụ gần những vũng nước còn lại.' },
+
+      'tbm-2-month': { en: 'February', vi: 'Tháng 2' },
+      'tbm-2-country': { en: 'Vietnam', vi: 'Việt Nam' },
+      'tbm-2-dest': { en: 'Fansipan & Hoàng Liên Sơn', vi: 'Fansipan & Hoàng Liên Sơn' },
+      'tbm-2-why': { en: 'Rhododendron forests begin to bloom along the summit trail, winter fog lifts, and the high ridgelines turn clear and cold rather than wet.', vi: 'Rừng đỗ quyên bắt đầu nở hoa trên đường lên đỉnh, sương mù mùa đông tan dần, những dải núi cao trở nên trong xanh và lạnh khô hơn là ẩm ướt.' },
+
+      'tbm-3-month': { en: 'March', vi: 'Tháng 3' },
+      'tbm-3-country': { en: 'Laos', vi: 'Lào' },
+      'tbm-3-dest': { en: 'Bolaven Plateau', vi: 'Cao nguyên Bolaven' },
+      'tbm-3-why': { en: "The last comfortable month here before the region's dry-season haze thickens further north — Tad Fane and Tad Lo waterfalls are still running full.", vi: 'Tháng cuối cùng còn dễ chịu ở đây trước khi khói mù mùa khô ở phía bắc dày đặc hơn — thác Tad Fane và Tad Lo vẫn chảy mạnh.' },
+
+      'tbm-4-month': { en: 'April', vi: 'Tháng 4' },
+      'tbm-4-country': { en: 'Vietnam', vi: 'Việt Nam' },
+      'tbm-4-dest': { en: 'Phong Nha–Kẻ Bàng', vi: 'Phong Nha–Kẻ Bàng' },
+      'tbm-4-why': { en: 'The dry season\'s most reliable stretch, when the rivers inside Hang Én and Tú Làn run calm enough for multi-day cave treks. Skip the Laos and Cambodia lowlands this month — both turn hot and hazy.', vi: 'Giai đoạn ổn định nhất của mùa khô, khi những dòng sông trong hang Hang Én và Tú Làn đủ êm để thực hiện các chuyến trekking hang động nhiều ngày. Nên tránh vùng đồng bằng Lào và Campuchia trong tháng này — cả hai đều nóng và nhiều khói mù.' },
+
+      'tbm-5-month': { en: 'May', vi: 'Tháng 5' },
+      'tbm-5-country': { en: 'Vietnam', vi: 'Việt Nam' },
+      'tbm-5-dest': { en: 'Mù Cang Chải', vi: 'Mù Cang Chải' },
+      'tbm-5-why': { en: "Freshly flooded, newly transplanted paddies turn the valley into a mirror of the sky — a completely different face of the terraces from September's gold.", vi: 'Những ruộng bậc thang mới cấy, ngập nước biến cả thung lũng thành tấm gương phản chiếu bầu trời — một vẻ đẹp hoàn toàn khác so với màu vàng của tháng Chín.' },
+
+      'tbm-6-month': { en: 'June', vi: 'Tháng 6' },
+      'tbm-6-country': { en: 'Laos', vi: 'Lào' },
+      'tbm-6-dest': { en: 'Nam Ha & Nong Khiaw', vi: 'Nam Hà & Nong Khiaw' },
+      'tbm-6-why': { en: 'Early rains recharge the rivers and waterfalls while mornings often stay dry — trails are quiet before the heaviest months of the monsoon arrive.', vi: 'Mưa đầu mùa làm sông suối và thác nước đầy trở lại, buổi sáng thường vẫn khô ráo — đường mòn vắng vẻ trước khi những tháng mưa nặng nhất của gió mùa đến.' },
+
+      'tbm-7-month': { en: 'July', vi: 'Tháng 7' },
+      'tbm-7-country': { en: 'Cambodia', vi: 'Campuchia' },
+      'tbm-7-dest': { en: 'Kirirom National Park', vi: 'Vườn quốc gia Kirirom' },
+      'tbm-7-why': { en: 'A pine-covered plateau that stays several degrees cooler than the lowlands through the rains, with two waterfalls an easy walk from the road.', vi: 'Cao nguyên phủ rừng thông này mát hơn vùng đồng bằng vài độ suốt mùa mưa, với hai thác nước chỉ cách đường đi bộ vài bước.' },
+
+      'tbm-8-month': { en: 'August', vi: 'Tháng 8' },
+      'tbm-8-country': { en: 'Vietnam', vi: 'Việt Nam' },
+      'tbm-8-dest': { en: 'Mù Cang Chải', vi: 'Mù Cang Chải' },
+      'tbm-8-why': { en: 'The lowest terraces around La Pán Tẩn and Chế Cu Nha turn gold first, usually from the final week of August.', vi: 'Những ruộng bậc thang thấp nhất quanh La Pán Tẩn và Chế Cu Nha chín vàng trước tiên, thường từ tuần cuối tháng Tám.' },
+
+      'tbm-9-month': { en: 'September', vi: 'Tháng 9' },
+      'tbm-9-country': { en: 'Vietnam', vi: 'Việt Nam' },
+      'tbm-9-dest': { en: 'Sa Pa & Hoàng Su Phì', vi: 'Sa Pa & Hoàng Su Phì' },
+      'tbm-9-why': { en: 'Peak golden rice terrace season, and the clearest, coolest trekking weather of the year arrives right behind it.', vi: 'Đỉnh điểm mùa lúa chín vàng, và ngay sau đó là thời tiết trekking trong xanh, mát mẻ nhất trong năm.' },
+
+      'tbm-10-month': { en: 'October', vi: 'Tháng 10' },
+      'tbm-10-country': { en: 'Vietnam', vi: 'Việt Nam' },
+      'tbm-10-dest': { en: 'Hà Giang Loop', vi: 'Vòng cung Hà Giang' },
+      'tbm-10-why': { en: "Tam Giác Mạch buckwheat flowers begin to bloom across the plateau as the region's best dry-season trekking window opens.", vi: 'Hoa tam giác mạch bắt đầu nở khắp cao nguyên đá khi mùa trekking đẹp nhất của khu vực mở ra.' },
+
+      'tbm-11-month': { en: 'November', vi: 'Tháng 11' },
+      'tbm-11-country': { en: 'Laos', vi: 'Lào' },
+      'tbm-11-dest': { en: 'Luang Prabang & Kuang Si', vi: 'Luang Prabang & Kuang Si' },
+      'tbm-11-why': { en: 'Waterfalls are at their fullest right at the end of the rains — arguably the single best month to see Kuang Si running at full flow.', vi: 'Thác nước đầy nhất ngay khi mùa mưa vừa kết thúc — có thể nói đây là tháng đẹp nhất để chiêm ngưỡng thác Kuang Si chảy mạnh.' },
+
+      'tbm-12-month': { en: 'December', vi: 'Tháng 12' },
+      'tbm-12-country': { en: 'Cambodia', vi: 'Campuchia' },
+      'tbm-12-dest': { en: 'Angkor & Mondulkiri', vi: 'Angkor & Mondulkiri' },
+      'tbm-12-why': { en: 'Peak cool, dry season — the most comfortable trekking temperatures of the year, with Bou Sraa waterfall still running well from the tail of the rains.', vi: 'Đỉnh điểm mùa khô mát mẻ — thời tiết trekking dễ chịu nhất trong năm, thác Bou Sraa vẫn chảy tốt từ dư âm mùa mưa.' },
 
       'approach-eyebrow': { en: 'Our Approach', vi: 'Cách chúng tôi làm' },
       'approach-title': { en: 'How we move through wild places', vi: 'Cách chúng tôi di chuyển qua những vùng đất hoang sơ' },
